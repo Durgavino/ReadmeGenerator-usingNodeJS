@@ -3,7 +3,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs/promises');
 const path = require('path');
-const markdown = require('./utils/generateMarkdown.js');
+const generateMarkdown = require('./utils/generateMarkdown.js');
+const { writeFile, writeFileSync } = require('fs');
 
 // // TODO: Create an array of questions for user input
 const questions = [
@@ -13,10 +14,20 @@ const questions = [
         name: "title"
     },
     {
+        type: "input",
+        message: "Description",
+        name: "description"
+    },
+    {
+        type: "input",
+        message: "Usage",
+        name: "usage"
+    },
+    {
         type: "list",
         message: "License",
         name: "license",
-        choices:["MIT","Apache","GPL","Unlicensed"]
+        choices: ["MIT", "Apache", "GPL", "Unlicensed"]
     }
 
 
@@ -24,24 +35,30 @@ const questions = [
 
 
 // // TODO: Create a function to write README file
- function writeToFile(filename,data)
- {
-    fs.writeFile('README.md', data, (err) =>
-     {
-        if (err) 
-        {
+function writeToFile(filename, data) {
+    fs.writeFile(filename, data, (err) => {
+        if (err) {
             throw new Error(err);
         }
         console.log("File was written successfully");
     });
 
- }
+}
 
- function readmeCliPrompt(){
+function readmeCliPrompt() {
 
-    inquirer.prompt(  questions 
-    )
- }
+    inquirer.prompt(questions)
+        .then(data => {
+            
+
+           fs.writeFile('generateMarkdown',JSON.stringify(data))
+       
+      
+
+        })
+
+}
+
 
 // // TODO: Create a function to initialize app
 function init() { }
@@ -49,21 +66,5 @@ function init() { }
 // // Function call to initialize app
 init();
 
+readmeCliPrompt();
 
-
-// const fs=require('fs');
-
-// fs.writeFile('readme.txt','hi',(err) =>
-// {
-//     if(err){
-//         throw new Error(err);
-//     }
-//     console.log("File was written");
-// });
-
-// fs.readFile('readme.txt','utf8',(err,data) => {
-//     if(err){
-//         throw new Error(err);
-//     }
-//     console.log(data);
-// });
