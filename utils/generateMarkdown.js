@@ -4,41 +4,46 @@
 function renderLicenseBadge(license) {
 
   if (typeof license === "GPL" || license === "Apache" || license === "MIT") {
-   return `![${license}:"Image is not available](https://img.shields.io/badge/licence-${license}-brightgreen)`;
+    return `![${license}:"Image is not available](https://img.shields.io/badge/licence-${license}-brightgreen)`;
 
   }
-return "_Unlicensed_"
- 
+  return "_Unlicensed_"
+
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) { 
-  if(license==='MIT'){
+function renderLicenseLink(license) {
+  if (license === 'MIT') {
     return "https://choosealicense.com/licenses/mit/";
-  }else if(license==='Apache'){
-return 'https://choosealicense.com/licenses/apache-2.0/';
-  }else if(license==='GPL'){
-return 'https://choosealicense.com/licenses/agpl-3.0/';
+  } else if (license === 'Apache') {
+    return 'https://choosealicense.com/licenses/apache-2.0/';
+  } else if (license === 'GPL') {
+    return 'https://choosealicense.com/licenses/agpl-3.0/';
   }
   return "unlicensed";
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) { 
-  if(license==='MIT'){
+function renderLicenseSection(license) 
+{
+  if (license === 'MIT')
+  {
     return "MIT";
-  }else if(license==='Apache'){
-return 'Apache';
-  }else if(license==='GPL'){
-return 'GPL';
+  } else if (license === 'Apache') 
+  {
+    return 'Apache';
+  } else if (license === 'GPL') 
+  {
+    return 'GPL';
   }
   return "unlicensed";
 }
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
+function generateMarkdown(data) 
+{
 
   return `# Title
   ${data.title} 
@@ -52,10 +57,10 @@ ${data.description} \n
 ## Table of Contents (Optional)
 If your README is long, add a table of contents to make it easy for users to find what they need.
 
-- [Installation](##installation)
-- [Usage](##Usage)
-- [Credits](##credits)
-- [License](##license)
+- [Installation](#installation)
+- [Usage](#Usage)
+- [Credits](#credits)
+- [License](#license)
 
 ## Installation
 ${data.installation} \n
