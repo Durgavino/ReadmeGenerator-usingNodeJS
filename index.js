@@ -20,6 +20,11 @@ const questions = [
     },
     {
         type: "input",
+        message: "Installation",
+        name: "installation"
+    },
+    {
+        type: "input",
         message: "Usage",
         name: "usage"
     },
@@ -28,6 +33,26 @@ const questions = [
         message: "License",
         name: "license",
         choices: ["MIT", "Apache", "GPL", "Unlicensed"]
+    },
+    {
+        type: "input",
+        message: "Test",
+        name: "test"
+    },
+    {
+        type: "input",
+        message: "Contributing",
+        name: "contributing"
+    },
+    {
+        type: "input",
+        message: "Enter Your GitHub Username",
+        name: "username"
+    },
+    {
+        type: "input",
+        message: "Enter Your Email Address:",
+        name: "email"
     }
 
 
@@ -36,7 +61,7 @@ const questions = [
 
 // // TODO: Create a function to write README file
 function writeToFile(filename, data) {
-    fs.writeFile(filename, data, (err) => {
+    fs.writeFile(filename, generateMarkdown(data), (err) => {
         if (err) {
             throw new Error(err);
         }
@@ -45,32 +70,28 @@ function writeToFile(filename, data) {
 
 }
 
-function readmeCliPrompt() {
-
-    inquirer.prompt(questions)
-        .then(data => {
-            
-console.log(data);
-
-//  fs.writeFile('generateMarkdown',JSON.stringify(data))
-       
-       
-      
-    // writeToFile(`${data.title}.md`,JSON.stringify(data));
-
-      
-     writeToFile('README.md',JSON.stringify(data));
-
-        })
-
-}
-
 
 // // TODO: Create a function to initialize app
-function init() { }
+function init() {
+    inquirer.prompt(questions)
+        .then(data => {
+
+            console.log(data);
+
+            //  fs.writeFile('generateMarkdown',JSON.stringify(data))
+
+
+
+            // writeToFile(`${data.title}.md`,JSON.stringify(data));
+
+
+            writeToFile('README.md', data);
+
+        })
+}
 
 // // Function call to initialize app
 init();
 
-readmeCliPrompt();
+
 
