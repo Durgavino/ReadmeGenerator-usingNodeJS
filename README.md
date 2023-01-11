@@ -1,1 +1,1 @@
-{"title":"Venba","description":"vino","usage":"durga","license":"MIT"}
+{"title":"durga","description":"devi","usage":"venba","license":"Apache"}
