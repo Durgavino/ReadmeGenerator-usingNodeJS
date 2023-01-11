@@ -52,11 +52,14 @@ function readmeCliPrompt() {
             
 console.log(data);
 
-  fs.writeFile('generateMarkdown',JSON.stringify(data))
+//  fs.writeFile('generateMarkdown',JSON.stringify(data))
        
        
       
-    //   writeToFile(`${data.title}.md`,JSON.stringify(data));
+    // writeToFile(`${data.title}.md`,JSON.stringify(data));
+
+      
+     writeToFile('README.md',JSON.stringify(data));
 
         })
 
